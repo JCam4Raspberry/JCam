@@ -16,7 +16,7 @@ public class ExposureModeTest {
 
 	@Test
 	public void testDefault() {
-		String expected = " --exposure off ";
+		String expected = " --exposure off";
 		
 		assertTrue(expected.equals(testobj.toString()));
 	}
@@ -24,7 +24,7 @@ public class ExposureModeTest {
 	@Test
 	public void testSportsMode(){
 		//given 
-		String expected = " --exposure sports ";
+		String expected = " --exposure sports";
 		//when
 		testobj.setMode(testobj.EXPOSURE_MODE_SPORTS);
 		

@@ -14,7 +14,7 @@ public class ExposureMode {
 	public String EXPOSURE_MODE_BEACH = "beach";
 	public String EXPOSURE_MODE_VERY_LONG = "verylong";
 	public String EXPOSURE_MODE_FIXED_FPS = "fixedfps";
-	public String EXPOSURE_MODE_ANTI_SHAKE = "antishake ";
+	public String EXPOSURE_MODE_ANTI_SHAKE = "antishake";
 	public String EXPOSURE_MODE_FIREWORKS = "fireworks";
 
 	//value of the selected mode - default is "off"
@@ -41,7 +41,7 @@ public class ExposureMode {
 
 	@Override
     public String toString() {
-		return " --exposure " + mode + " ";
+		return " --exposure " + mode;
     }
 	
 	
