@@ -21,14 +21,13 @@ public class CamSettings {
 	private String camselect = "0";
 	//camera mode - toString() returns raspistill command
 	private ExposureMode exposureMode;
-	
+	//file name of image
 	private String fileName;
-	
-	//private constructor
-	private CamSettings() {
+	//set image rotation
+	private int rotation = 0;
+	//set waiting time - it 0 process will run forever
+	private int timeout = 1;
 
-	}
-	
 	public CamSettings(String filename) {
 		this.fileName = filename;
 	}
@@ -36,17 +35,65 @@ public class CamSettings {
 	@Override
     public String toString() {
 		StringBuilder builder = new StringBuilder(50);
-		builder.append("raspistill -o ").append(fileName).append('.').append(this.encoding);
+		
+		builder.append("raspistill -o ").append(fileName);
+		builder.append(" --encoding ").append(this.encoding);
 		
 		//exposure mode
 		builder.append(exposureMode.toString());
+		
+		//timeout
+		builder.append(" --timeout ").append(this.timeout);
 		
 		//preview
 		if (!preview){
 			builder.append(" --nopreview");
 		}
 		
+		if (rotation != 0) {
+			builder.append(" --rotation ").append(this.rotation);
+		}
 		
 		return builder.toString();
     }
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public void setQuality(int quality) {
+		this.quality = quality;
+	}
+
+	public void setEncoding(String encoding) {
+		this.encoding = encoding;
+	}
+
+	public void setPreview(boolean preview) {
+		this.preview = preview;
+	}
+
+	public void setCamselect(String camselect) {
+		this.camselect = camselect;
+	}
+
+	public void setExposureMode(ExposureMode exposureMode) {
+		this.exposureMode = exposureMode;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public void setRotation(int rotation) {
+		this.rotation = rotation;
+	}
+	
+	public void setTimeout(int timeout) {
+		this.timeout = timeout;
+	}
 }

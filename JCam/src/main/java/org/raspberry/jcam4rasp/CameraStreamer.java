@@ -10,7 +10,12 @@ import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 
+import org.raspberry.jcam4rasp.entity.CamSettings;
+import org.raspberry.jcam4rasp.entity.ExposureMode;
+
 public class CameraStreamer {
+	
+	private CamSettings settings;
 
 	public static void getImage(OutputStream stream) {
 	    System.out.println("START PROGRAM");
@@ -110,8 +115,9 @@ public class CameraStreamer {
 			
 			long start = System.currentTimeMillis();
 			
-			Process p = Runtime.getRuntime().exec("raspistill -rot 90 -t 1 -n -ex sports -o " + file.getAbsolutePath());
+			Process p = Runtime.getRuntime().exec(getDefaultSettings(file.getAbsolutePath()).toString());
 			p.waitFor();
+			
 			System.out.println("Process finished in ms: " + (System.currentTimeMillis() - start));
 			
 			start = System.currentTimeMillis();
@@ -125,4 +131,14 @@ public class CameraStreamer {
 			System.out.println(e);
 		}
 	}
+
+	private CamSettings getDefaultSettings(String filename) {
+	    settings = new CamSettings(filename);
+	    settings.setRotation(90);
+	    settings.setPreview(false);
+	    settings.setEncoding("jpg");
+	    settings.setExposureMode(new ExposureMode(ExposureMode.EXPOSURE_MODE_NIGHT));
+	    
+	    return settings;
+    }
 }
